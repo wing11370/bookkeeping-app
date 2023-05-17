@@ -96,7 +96,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -132,7 +137,7 @@
                                     },
                                     "out": {
                                         "type": "integer",
-                                        "example": 100
+                                        "example": 0
                                     }
                                 },
                                 "type": "object"
@@ -181,7 +186,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/records/{id}": {
@@ -270,7 +280,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -391,7 +406,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -453,7 +473,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/register": {
@@ -602,13 +627,11 @@
     },
     "components": {
         "securitySchemes": {
-            "apiAuth": {
-                "type": "http",
-                "description": "Login with email and password to get the authentication token",
-                "name": "Token based Based",
-                "in": "header",
-                "bearerFormat": "JWT",
-                "scheme": "bearer"
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }
