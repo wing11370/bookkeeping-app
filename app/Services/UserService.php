@@ -27,6 +27,7 @@ class UserService
                 'email' => $array['email'],
                 'password' => Hash::make($array['password']),
             ]);
+            DB::commit();
             return $this->getToken($user);
         } catch (Exception $e) {
             DB::rollBack();
