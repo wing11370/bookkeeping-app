@@ -21,6 +21,11 @@ use OpenApi\Annotations as OA;
  *      url=L5_SWAGGER_CONST_HOST,
  *      description="Localhost"
  * )
+ * @OAS\SecurityScheme(
+ *      securityScheme="sanctum",
+ *      type="http",
+ *      scheme="bearer"
+ * )
  */
 class BaseController extends Controller
 {
