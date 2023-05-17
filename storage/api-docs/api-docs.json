@@ -1,0 +1,615 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "bookkeeping-app API Documentation",
+        "description": "bookkeeping-app API Documentation",
+        "contact": {
+            "email": "developer@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://bookkeeping-app.chadwick.localhost",
+            "description": "Localhost"
+        }
+    ],
+    "paths": {
+        "/api/records": {
+            "get": {
+                "tags": [
+                    "交易紀錄"
+                ],
+                "summary": "取得紀錄列表",
+                "description": "取得紀錄列表",
+                "operationId": "list",
+                "responses": {
+                    "200": {
+                        "description": "取得成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "user_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "item": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "datetime": {
+                                                        "type": "string",
+                                                        "example": "2021-01-01 00:00:00"
+                                                    },
+                                                    "in": {
+                                                        "type": "integer",
+                                                        "example": 100
+                                                    },
+                                                    "out": {
+                                                        "type": "integer",
+                                                        "example": 100
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "取得失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "取得失敗"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "交易紀錄"
+                ],
+                "summary": "新增紀錄",
+                "description": "新增紀錄",
+                "operationId": "create",
+                "requestBody": {
+                    "description": "新增紀錄",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item",
+                                    "datetime",
+                                    "in",
+                                    "out"
+                                ],
+                                "properties": {
+                                    "item": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "datetime": {
+                                        "type": "string",
+                                        "example": "2021-01-01 00:00:00"
+                                    },
+                                    "in": {
+                                        "type": "integer",
+                                        "example": 100
+                                    },
+                                    "out": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "新增成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "新增成功"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "新增失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "新增失敗"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/records/{id}": {
+            "get": {
+                "tags": [
+                    "交易紀錄"
+                ],
+                "summary": "取得紀錄",
+                "description": "取得紀錄",
+                "operationId": "find",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "紀錄ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "取得成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "item": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "datetime": {
+                                                    "type": "string",
+                                                    "example": "2021-01-01 00:00:00"
+                                                },
+                                                "in": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "out": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "取得失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "取得失敗"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "交易紀錄"
+                ],
+                "summary": "更新紀錄",
+                "description": "更新紀錄",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "紀錄ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item",
+                                    "datetime",
+                                    "in",
+                                    "out"
+                                ],
+                                "properties": {
+                                    "item": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "datetime": {
+                                        "type": "string",
+                                        "example": "2021-01-01 00:00:00"
+                                    },
+                                    "in": {
+                                        "type": "integer",
+                                        "example": 100
+                                    },
+                                    "out": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "更新成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "item": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "datetime": {
+                                                    "type": "string",
+                                                    "example": "2021-01-01 00:00:00"
+                                                },
+                                                "in": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "out": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "更新失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "更新失敗"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "交易紀錄"
+                ],
+                "summary": "刪除紀錄",
+                "description": "刪除紀錄",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "紀錄ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "刪除成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "刪除失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "刪除失敗"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "使用者"
+                ],
+                "summary": "註冊會員",
+                "description": "註冊會員",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "註冊會員",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "test1234"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "註冊成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "註冊失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "xxxx"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "使用者"
+                ],
+                "summary": "登入",
+                "description": "登入",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "登入",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "test1234"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "登入成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "登入失敗",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "xxxx"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
