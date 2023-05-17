@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:sanctum')->prefix('records')->group(function () {
+    Route::post('/', [RecordController::class, 'create']);
+    Route::get('/', [RecordController::class, 'list']);
+    Route::get('/{id}', [RecordController::class, 'find']);
+    Route::put('/{id}', [RecordController::class, 'update']);
+    Route::delete('/{id}', [RecordController::class, 'delete']);
 });
