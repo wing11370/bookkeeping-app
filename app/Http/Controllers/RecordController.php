@@ -21,6 +21,7 @@ class RecordController extends BaseController
      *     tags={"交易紀錄"},
      *     summary="新增紀錄",
      *     description="新增紀錄",
+     *     security={{"sanctum": {}}},
      *     @OA\RequestBody(
      *          description="新增紀錄",
      *          required=true,
@@ -29,7 +30,7 @@ class RecordController extends BaseController
      *              @OA\Property(property="item", type="string", example="test"),
      *              @OA\Property(property="datetime", type="string", example="2021-01-01 00:00:00"),
      *              @OA\Property(property="in", type="integer", example=100),
-     *              @OA\Property(property="out", type="integer", example=100),
+     *              @OA\Property(property="out", type="integer", example=0),
      *              ),
      *     ),
      *     @OA\Response(
@@ -98,6 +99,7 @@ class RecordController extends BaseController
      *     tags={"交易紀錄"},
      *     summary="取得紀錄列表",
      *     description="取得紀錄列表",
+     *     security={{"sanctum": {}}},
      *     @OA\Response(
      *     response=200,
      *     description="取得成功",
@@ -157,6 +159,7 @@ class RecordController extends BaseController
      *     tags={"交易紀錄"},
      *     summary="取得紀錄",
      *     description="取得紀錄",
+     *     security={{"sanctum": {}}},
      *     @OA\Parameter(
      *          name="id",
      *          description="紀錄ID",
@@ -225,6 +228,7 @@ class RecordController extends BaseController
      *     tags={"交易紀錄"},
      *     summary="更新紀錄",
      *     description="更新紀錄",
+     *     security={{"sanctum": {}}},
      *     @OA\Parameter(
      *          name="id",
      *          description="紀錄ID",
@@ -325,6 +329,7 @@ class RecordController extends BaseController
      *     tags={"交易紀錄"},
      *     summary="刪除紀錄",
      *     description="刪除紀錄",
+     *     security={{"sanctum": {}}},
      *     @OA\Parameter(
      *          name="id",
      *          description="紀錄ID",
